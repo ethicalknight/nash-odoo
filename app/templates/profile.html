@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Edit Profile - Skill Swap</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="/assets/tailwind.css" rel="stylesheet" />
+
+</head>
+<body class="min-h-screen bg-[#E4EFE8] dark:bg-[#0f172a] text-[#0F172A] dark:text-white transition-all duration-300">
+
+  <!-- ✅ Navbar -->
+
+  <nav class="flex items-center justify-between p-4 bg-white dark:bg-gray-800 shadow">
+  <div class="flex items-center space-x-2">
+    <img src="/static/skill_swap.jpg" alt="Skill Swap Logo" class="h-8 w-8">
+    <span class="text-xl font-bold text-gray-800 dark:text-white">Skill Swap</span>
+  </div>
+
+  <div class="space-x-4">
+    <a href="/app/templates/index.html" class="text-gray-700 dark:text-white hover:underline">Home</a>
+    <a href="/app/templates/request.html" class="text-gray-700 dark:text-white hover:underline">Swap Requests</a>
+    <a href="/app/templates/profile.html" class="text-gray-700 dark:text-white hover:underline">My Profile</a>
+    <a href="/app/templates/login.html" class="text-gray-700 dark:text-white hover:underline">Login</a>
+    <button id="darkModeToggle" class="ml-4 text-sm dark:text-white">🌙 Dark</button>
+  </div>
+</nav>
+ 
+    <!-- Title -->
+    <h1 class="text-xl font-bold text-[#0F172A] dark:text-white">Skill Swap</h1>
+  </div>
+  
+  <div class="flex items-center space-x-4">
+    <a href="/app/templates/index.html" class="text-[#0F172A] dark:text-white">Home</a>
+    <a href="/app/templates/requests.html" class="text-[#0F172A] dark:text-white">Swap Requests</a>
+    <a href="/app/templates/profile.html" class="text-[#0F172A] dark:text-white">My Profile</a>
+     <a href="/app/templates/login.html" class="text-[#0F172A] dark:text-white">Login</a>
+    <button id="toggle-dark" class="border px-3 py-1 rounded dark:text-white text-[#0F172A]">🌙 Dark</button>
+  </div>
+</nav>
+
+  <!-- ✅ Main Form -->
+  <main class="max-w-3xl mx-auto mt-10 bg-white shadow-md rounded-lg p-8">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800">✏️ Edit Your Profile</h2>
+
+    <form id="profileForm" class="space-y-6">
+
+      <!-- Name -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+        <input type="text" name="name" value="{{ user.name }}" class="w-full p-2 border rounded" />
+      </div>
+
+      <!-- Location -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Location</label>
+        <input type="text" name="location" placeholder="City, Country" class="w-full p-3 border rounded focus:outline-blue-400" />
+      </div>
+
+      <!-- Skills Offered -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Skills Offered</label>
+        <input type="text" name="skills_offered" placeholder="e.g., Python, Design" class="w-full p-3 border rounded focus:outline-blue-400" />
+        <small class="text-gray-500">Use commas to separate multiple skills.</small>
+      </div>
+
+      <!-- Skills Wanted -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Skills Wanted</label>
+        <input type="text" name="skills_wanted" placeholder="e.g., React, Marketing" class="w-full p-3 border rounded focus:outline-blue-400" />
+        <small class="text-gray-500">Use commas to separate multiple skills.</small>
+      </div>
+
+      <!-- Public/Private -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Profile Visibility</label>
+        <select name="is_public" class="w-full p-3 border rounded focus:outline-blue-400">
+          <option value="true">🌍 Public</option>
+          <option value="false">🔒 Private</option>
+        </select>
+      </div>
+
+      <!-- Profile Picture -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Profile Picture</label>
+        <input type="file" name="photo" class="w-full p-2 border rounded focus:outline-blue-400 bg-white" />
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex gap-4 mt-6">
+        <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded shadow">
+          💾 Save
+        </button>
+        <button type="reset" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded shadow">
+          ❌ Discard
+        </button>
+      </div>
+    </form>
+  </main>
+<script>
+  const toggleBtn = document.getElementById("darkModeToggle");
+  toggleBtn.addEventListener("click", () => {
+    document.documentElement.classList.toggle("dark");
+    localStorage.setItem("theme", document.documentElement.classList.contains("dark") ? "dark" : "light");
+  });
+
+  // Apply saved theme
+  if (localStorage.getItem("theme") === "dark") {
+    document.documentElement.classList.add("dark");
+  }
+</script>
+
+</body>
+</html class="dark">

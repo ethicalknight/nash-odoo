@@ -1,0 +1,287 @@
+/* Tailwind base, components, and utilities should be imported via build tools, not directly in CSS */
+
+/* === Custom Utilities for Skill Swap === */
+
+body {
+  background-color: #E4EFE8; /* soft mint background */
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #d1d5db;
+}
+
+.nav-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #0F172A;
+}
+
+.btn-primary {
+  background-color: #0F172A;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+.search-bar {
+  display: flex;
+  align-items: center;
+  border: 1px solid #0F172A;
+}
+
+.search-bar input {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.5rem;
+}
+
+.dropdown {
+  color: #0F172A;
+  font-weight: 500;
+  border: 1px solid #0F172A;
+}
+
+.profile-card {
+  border: 1px solid #9ca3af;
+  background-color: #fff;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.profile-info {
+  font-size: 0.875rem;
+  color: #0F172A;
+}
+
+.profile-pic {
+  width: 70px;
+  height: 70px;
+  border-radius: 9999px;
+}
+
+.skill-tag {
+  font-size: 0.75rem;
+  background-color: #0F172A;
+  color: #fff;
+}
+
+.rating {
+  color: #facc15;
+  padding-bottom: 0.25rem;
+}
+
+.skill-pill {
+  border: 1px solid #0F172A;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.selected-skill {
+  background-color: #fff;
+  border: 1px solid #0F172A;
+  color: #0F172A;
+}
+
+.skill-x {
+  margin-left: 0.5rem;
+  cursor: pointer;
+  color: #000;
+  font-weight: bold;
+}
+
+.skill-pill {
+  padding-bottom: 0.25rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: #0F172A;
+  margin: 0.25rem;
+}
+
+.input-field {
+  font-size: 0.875rem;
+  color: #0F172A;
+  outline: none;
+  border: none;
+  background: transparent;
+}
+
+.btn-primary {
+  background-color: #0F172A;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.dark .navbar {
+  background-color: #1f2937;
+  color: #fff;
+}
+  background-color: #1f2937;
+  color: #fff;
+}
+
+.dark .profile-card {
+  background-color: #374151;
+  color: #fff;
+  border-color: #4b5563;
+}
+
+.dark .btn-primary {
+  background-color: #fff;
+.dropdown {
+  color: #0F172A;
+  font-weight: 500;
+  border: 1px solid #0F172A;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.profile-info {
+  font-size: 0.875rem; /* text-sm */
+  color: #0F172A;
+}
+
+.profile-pic {
+  width: 70px;
+  height: 70px;
+  border-radius: 9999px;
+}
+
+.skill-tag {
+  font-size: 0.75rem; /* text-xs */
+  background-color: #0F172A;
+  color: #fff;
+}
+
+.rating {
+  color: #facc15; /* yellow-400 */
+  padding-bottom: 0.25rem;
+}
+
+.skill-pill {
+  border: 1px solid #0F172A;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.selected-skill {
+  background-color: #fff;
+  border: 1px solid #0F172A;
+  color: #0F172A;
+}
+
+.skill-x {
+  margin-left: 0.5rem;
+  cursor: pointer;
+  color: #000;
+  font-weight: bold;
+}
+
+.skill-pill {
+  padding-bottom: 0.25rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+.profile-info {
+  font-size: 0.875rem; /* text-sm */
+  color: #0F172A;
+}
+
+.dark .navbar {
+  background-color: #1f2937;
+  color: #fff;
+}
+
+.dark .profile-card {
+  background-color: #374151;
+  color: #fff;
+  border-color: #4b5563;
+}
+
+.dark .btn-primary {
+  background-color: #fff;
+  color: #0F172A;
+}
+
+.dark .input-field {
+  background-color: #1f2937;
+  color: #fff;
+  border-color: #fff;
+}
+
+.skill-pill {
+  border: 1px solid #0F172A;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  color: #0F172A;
+  margin: 0.25rem;
+}
+
+.selected-skill {
+  background-color: #fff;
+  border: 1px solid #0F172A;
+  color: #0F172A;
+  padding-bottom: 0.25rem;
+  border-radius: 0.25rem; /* rounded */
+  display: flex;
+  align-items: center;
+}
+
+.skill-x {
+  margin-left: 0.5rem; /* ml-2 */
+  cursor: pointer;
+  color: #000; /* text-black */
+  font-weight: bold;
+}
+
+.profile-card {
+  border: 1px solid #9ca3af; /* gray-400 */
+  background-color: #fff;
+  border-radius: 0.75rem; /* rounded-xl */
+  padding: 1rem; /* p-4 */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* shadow-md */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+} background-color: #1f2937;
+  color: #fff;
+  border-color: #fff;
+}
+
+.profile-card {
+  border: 1px solid #9ca3af; /* gray-400 */
+  background-color: #fff;
+  border-radius: 0.75rem; /* rounded-xl */
+  padding: 1rem; /* p-4 */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* shadow-md */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}

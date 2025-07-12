@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skill Swap Platform</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <!-- Use Tailwind with dark mode support via class -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+  };
+</script>
+
+  <script defer src="app.js"></script>
+  <link href="/static/assets/tailwand.css" rel="stylesheet" />
+
+</head>
+<body class="min-h-screen bg-[#E4EFE8] dark:bg-[#0f172a] text-[#0F172A] dark:text-white transition-all duration-300">
+
+ <nav class="flex items-center justify-between p-4 bg-white dark:bg-gray-800 shadow">
+  <div class="flex items-center space-x-2">
+    <img src="/static/skill_swap.jpg" alt="Skill Swap Logo" class="h-8 w-8">
+    <span class="text-xl font-bold text-gray-800 dark:text-white">Skill Swap</span>
+  </div>
+
+  <div class="space-x-4">
+    <a href="/app/templates/index.html" class="text-gray-700 dark:text-white hover:underline">Home</a>
+    <a href="/app/templates/request.html" class="text-gray-700 dark:text-white hover:underline">Swap Requests</a>
+    <a href="/app/templates/profile.html" class="text-gray-700 dark:text-white hover:underline">My Profile</a>
+    <button id="darkModeToggle" class="ml-4 text-sm dark:text-white">🌙 Dark</button>
+  </div>
+</nav>
+ 
+    <!-- Title -->
+    <h1 class="text-xl font-bold text-[#0F172A] dark:text-white">Skill Swap</h1>
+  </div>
+  
+  <div class="flex items-center space-x-4">
+    <a href="/app/templates/index.html" class="text-[#0F172A] dark:text-white">Home</a>
+    <a href="/app/templates/requests.html" class="text-[#0F172A] dark:text-white">Swap Requests</a>
+    <a href="/app/templates/profile.html" class="text-[#0F172A] dark:text-white">My Profile</a>
+     <a href="/app/templates/login.html" class="text-[#0F172A] dark:text-white">Login</a>
+    <button id="toggle-dark" class="border px-3 py-1 rounded dark:text-white text-[#0F172A]">🌙 Dark</button>
+  </div>
+</nav>
+
+
+  <!-- ✅ Right-side: Profile or Login Button -->
+    <div id="navbarUser" class="flex items-center gap-4">
+        <button id="loginButton" class="bg-blue-500 text-white px-4 py-2 rounded hidden" href='login.html'>Login</button>
+        <button id="profileButton" class="bg-blue-500 text-white px-4 py-2 rounded hidden" onclick="window.location.href='profile.html'">My Profile</button>
+
+      <!-- Filled by JS -->
+    </div>
+  </nav>
+
+  <!-- ✅ SEARCH + FILTER -->
+  <section class="bg-white shadow px-6 py-4 flex flex-col md:flex-row items-center justify-between sticky top-[64px] z-40">
+    <input
+      id="searchInput"
+      type="text"
+      placeholder="🔍 Search skill (e.g. Python)..."
+      class="w-full md:w-1/2 px-4 py-2 border rounded focus:outline-none shadow"
+    />
+
+    <select
+      id="statusFilter"
+      onchange="loadFeed()"
+      class="w-full md:w-1/4 mt-4 md:mt-0 px-4 py-2 border rounded shadow bg-white"
+    >
+      <option value="">🔁 All Requests</option>
+      <option value="pending">⏳ Pending</option>
+      <option value="accepted">✅ Accepted</option>
+      <option value="rejected">❌ Rejected</option>
+      <option value="deleted">🗑️ Deleted</option>
+    </select>
+  </section>
+
+  <!-- ✅ USER PROFILE FEED -->
+  <main class="max-w-6xl mx-auto px-6 py-6 overflow-y-auto" style="max-height: calc(100vh - 144px);">
+    <div id="feedContainer" class="grid gap-6">
+      <h2 class="text-lg font-semibold dark:text-white">Explore Public Profiles</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+  {% for user in users %}
+    <div class="p-4 bg-white dark:bg-gray-700 rounded shadow">
+      <h3 class="text-xl font-bold text-gray-800 dark:text-white">{{ user.name }}</h3>
+      <p class="text-gray-500 dark:text-gray-300">{{ user.location }}</p>
+      <a href="/user/profile/{{ user.id }}" class="text-blue-500 underline">View Profile</a>
+    </div>
+  {% else %}
+    <p class="dark:text-gray-300">No public users found.</p>
+  {% endfor %}
+</div>
+
+      <!-- JS will populate user cards here -->
+    </div>
+  </main>
+  <script>
+  const toggleBtn = document.getElementById("darkModeToggle");
+  toggleBtn.addEventListener("click", () => {
+    document.documentElement.classList.toggle("dark");
+    localStorage.setItem("theme", document.documentElement.classList.contains("dark") ? "dark" : "light");
+  });
+
+  // Apply saved theme
+  if (localStorage.getItem("theme") === "dark") {
+    document.documentElement.classList.add("dark");
+  }
+</script>
+
+</body>
+</html class="dark">

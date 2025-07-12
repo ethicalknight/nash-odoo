@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Search Skills - Skill Swap</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="/assets/tailwind.css" rel="stylesheet" />
+
+</head>
+<body class="min-h-screen bg-[#E4EFE8] dark:bg-[#0f172a] text-[#0F172A] dark:text-white transition-all duration-300">
+
+  <!-- ✅ Navbar -->
+<nav class="flex items-center justify-between p-4 bg-white dark:bg-gray-800 shadow">
+  <div class="flex items-center space-x-2">
+    <img src="/static/skill_swap.jpg" alt="Skill Swap Logo" class="h-8 w-8">
+    <span class="text-xl font-bold text-gray-800 dark:text-white">Skill Swap</span>
+  </div>
+
+  <div class="space-x-4">
+    <a href="/app/templates/index.html" class="text-gray-700 dark:text-white hover:underline">Home</a>
+    <a href="/app/templates/request.html" class="text-gray-700 dark:text-white hover:underline">Swap Requests</a>
+    <a href="/app/templates/profile.html" class="text-gray-700 dark:text-white hover:underline">My Profile</a>
+    <a href="/app/templates/login.html" class="text-gray-700 dark:text-white hover:underline">Login</a>
+    <button id="darkModeToggle" class="ml-4 text-sm dark:text-white">🌙 Dark</button>
+  </div>
+</nav>
+ 
+    <!-- Title -->
+    <h1 class="text-xl font-bold text-[#0F172A] dark:text-white">Skill Swap</h1>
+  </div>
+  
+  <div class="flex items-center space-x-4">
+    <a href="/app/templates/index.html" class="text-[#0F172A] dark:text-white">Home</a>
+    <a href="/app/templates/requests.html" class="text-[#0F172A] dark:text-white">Swap Requests</a>
+    <a href="/app/templates/profile.html" class="text-[#0F172A] dark:text-white">My Profile</a>
+     <a href="/app/templates/login.html" class="text-[#0F172A] dark:text-white">Login</a>
+    <button id="toggle-dark" class="border px-3 py-1 rounded dark:text-white text-[#0F172A]">🌙 Dark</button>
+  </div>
+</nav>
+
+  <!-- ✅ Search & Filter -->
+  <section class="bg-white shadow px-6 py-6 flex flex-col md:flex-row items-center justify-between sticky top-[64px] z-40">
+    <input
+      id="searchInput"
+      type="text"
+      placeholder="🔍 Search by skill name (e.g., Python)"
+      class="w-full md:w-2/3 px-4 py-2 border rounded focus:outline-none shadow"
+    />
+    <select
+      id="statusFilter"
+      onchange="loadResults()"
+      class="w-full md:w-1/4 mt-4 md:mt-0 px-4 py-2 border rounded shadow bg-white"
+    >
+      <option value="">📂 All Status</option>
+      <option value="offered">📤 Offered</option>
+      <option value="wanted">📥 Wanted</option>
+    </select>
+  </section>
+
+  <!-- ✅ Search Results -->
+  <main class="max-w-6xl mx-auto px-6 py-8">
+    <h2 class="text-xl font-bold mb-6 text-gray-800">🔎 Search Results</h2>
+    <div id="resultsContainer" class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <!-- Cards will be populated here dynamically -->
+    </div>
+
+    <!-- Empty state -->
+    <p id="emptyMessage" class="text-center text-gray-500 mt-6 hidden">😶 No matching skills found.</p>
+  </main>
+
+  <script>
+    async function loadResults() {
+      const search = document.getElementById("searchInput").value.trim();
+      const filter = document.getElementById("statusFilter").value;
+      const res = await fetch(`/api/search?query=${search}&filter=${filter}`);
+      const data = await res.json();
+
+      const container = document.getElementById("resultsContainer");
+      const empty = document.getElementById("emptyMessage");
+      container.innerHTML = "";
+
+      if (data.length === 0) {
+        empty.classList.remove("hidden");
+        return;
+      }
+
+      empty.classList.add("hidden");
+
+      data.forEach(user => {
+        const card = document.createElement("div");
+        card.className = "bg-white p-6 rounded-lg shadow flex gap-4 items-start";
+
+        card.innerHTML = `
+          <img src="${user.photo || 'https://via.placeholder.com/64'}"
+               class="w-16 h-16 rounded-full object-cover border border-blue-400" />
+
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-gray-800">${user.name}</h3>
+            <p class="text-sm mt-1"><strong>📍 Location:</strong> ${user.location || 'N/A'}</p>
+            <p class="text-sm"><strong>📤 Offered:</strong> ${user.skills_offered?.join(", ") || '-'}</p>
+            <p class="text-sm"><strong>📥 Wanted:</strong> ${user.skills_wanted?.join(", ") || '-'}</p>
+            <button onclick="window.location.href='request.html?to_user=${user.id}'"
+                    class="mt-3 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 shadow">
+              🔁 Request Swap
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    window.onload = () => {
+      loadResults();
+      document.getElementById("searchInput").addEventListener("input", loadResults);
+    };
+  </script>
+  <script>
+  const toggleBtn = document.getElementById("darkModeToggle");
+  toggleBtn.addEventListener("click", () => {
+    document.documentElement.classList.toggle("dark");
+    localStorage.setItem("theme", document.documentElement.classList.contains("dark") ? "dark" : "light");
+  });
+
+  // Apply saved theme
+  if (localStorage.getItem("theme") === "dark") {
+    document.documentElement.classList.add("dark");
+  }
+</script>
+
+</body>
+</html class="dark">
